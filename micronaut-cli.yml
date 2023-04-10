@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.ericblue.chatgpt3twilio
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [annotation-api, app-name, data, data-jdbc, flyway, graalvm, gradle, http-client, http-session, java, java-application, jdbc-hikari, junit, logback, management, micronaut-build, netty-server, openapi, postgres, readme, security-annotations, security-jwt, serialization-jackson, shade, spring, spring-boot, spring-data-jdbc, spring-web, swagger-ui, test-resources, views-handlebars, yaml]

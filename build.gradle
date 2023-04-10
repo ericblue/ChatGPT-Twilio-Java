@@ -1,0 +1,93 @@
+plugins {
+    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("io.micronaut.application") version "3.7.0"
+    id("io.micronaut.test-resources") version "3.7.0"
+    id("io.micronaut.docker") version "3.7.0"
+
+}
+
+version = "0.1"
+group = "com.ericblue.chatgpt3twilio"
+
+repositories {
+    mavenCentral()
+    maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
+}
+
+dependencies {
+    // Micronaut
+    annotationProcessor("io.micronaut.data:micronaut-data-processor")
+    annotationProcessor("io.micronaut:micronaut-http-validation")
+    annotationProcessor("io.micronaut.openapi:micronaut-openapi")
+    annotationProcessor("io.micronaut.security:micronaut-security-annotations")
+    annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut:micronaut-http-server")
+    implementation("io.micronaut:micronaut-management")
+    //implementation("io.micronaut:micronaut-session")
+    implementation("io.micronaut.security:micronaut-security-jwt")
+    implementation("io.micronaut.serde:micronaut-serde-jackson")
+    implementation("io.micronaut.views:micronaut-views-handlebars")
+    implementation("io.swagger.core.v3:swagger-annotations")
+    implementation("jakarta.annotation:jakarta.annotation-api")
+    runtimeOnly("ch.qos.logback:logback-classic")
+    compileOnly("org.graalvm.nativeimage:svm")
+    implementation("io.micronaut:micronaut-validation")
+
+    // ChatGPT Java - https://github.com/PlexPt/chatgpt-java
+    implementation group: 'com.github.plexpt', name: 'chatgpt', version: '4.0.5'
+
+    // Twilio - https://www.twilio.com/docs/libraries/java
+    implementation group: "com.twilio.sdk", name: "twilio", version: "9.3.0"
+
+
+}
+
+
+application {
+    mainClass.set("com.ericblue.chatgpt3twilio.Application")
+}
+java {
+    sourceCompatibility = JavaVersion.toVersion("11")
+    targetCompatibility = JavaVersion.toVersion("11")
+}
+
+graalvmNative.toolchainDetection = false
+micronaut {
+    runtime("netty")
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("com.ericblue.chatgpt3twilio.*")
+    }
+}
+
+tasks.named("dockerBuild") {
+    images = ["ericblue/chatgpt3twilio:$project.version"]
+}
+
+tasks.named("dockerBuildNative") {
+    images = ["ericblue/chatgpt3twilio-native:$project.version"]
+}
+
+
+// Loads environments variables from files contained in .env located in the CWD'
+// See: https://stackoverflow.com/questions/36322536/how-to-set-an-environment-variable-from-a-gradle-build
+
+run.doFirst {
+    if (project.file('.env').exists()) {
+        file('.env').readLines().each() {
+            if (!it.isEmpty() && !it.startsWith("#")) {
+                def (key, value) = it.tokenize('=')
+                if (System.getenv(key) == null) {
+                    println "Setting environment variable for ${key}"
+                    environment key, value
+                }
+            }
+        }
+    } else {
+        println "No custom environment variables set"
+    }
+}
+
+

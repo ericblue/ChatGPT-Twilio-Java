@@ -24,9 +24,9 @@ An OpenAI API Key is required - this can be obtained at [OpenAI Account Keys](ht
 
 * Under your number settings, enter webhooks for both Messaging and Voice & Fax
   
-  * Messaging = https://<your public hostname>/sms
+  * Messaging = https://{your public hostname}/sms
   
-  * Voice = https://<your public hostname>/voice
+  * Voice = https://{your public hostname}/voice
   
   * Note: Voice functionality is not complete - this initial implementation will just greet the caller, and doesn't currently support interactions (TODO)
 

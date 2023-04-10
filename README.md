@@ -100,10 +100,10 @@ ngrok http 8080
 ## Running on Heroku
 
 This app has been tested on Heroku (https://heroku.com/) deploying as a Docker image and running with the Gradle buildpack.
-
+For the application name, I used chatgpt3twilio-xyz in this example, but you can use any name you like.
 ```
 # Create a new Heroku app
-heroku create mychatgpt3twilio
+heroku create chatgpt3twilio-xyz
 
 # Login to the container registry
 heroku container:login
@@ -115,13 +115,15 @@ heroku container:login
 cd build/docker/main
 
 # Push the container
-heroku container:push web -a mychatgpt3twilio
+heroku container:push web -a chatgpt3twilio-xyz
 
 # Release the container
-heroku container:release web -a mychatgpt3twilio
+heroku container:release web -a chatgpt3twilio-xyz
+
+# Note: Make sure to set the CHATGPT_API_KEY Config var under Settings
 
 # Open with the public URL
-heroku open -a mychatgpt3twilio
+heroku open -a chatgpt3twilio-xyz
 ```
 
 ## Todo

@@ -6,7 +6,7 @@ This web application, written in Java using the Micronaut (https://micronaut.io/
 
 
 
-<img src="https://scontent-sjc3-1.xx.fbcdn.net/v/t39.30808-6/340105174_156218764047619_2021003548218793191_n.jpg?stp=cp6_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=E8FTBM7-lXEAX9xKlwW&_nc_ht=scontent-sjc3-1.xx&oh=00_AfCk6P3u7ctZb4CoTs31OFd0IUeh1UDhKrsBSj1f3FXsSQ&oe=6437D99A" title="" alt="May be an image of text that says '10 CG Chat Today 1:50 PM Hello world! Hello there! How may today? assist you What's the meaning of life? As an AI language model, do not have personal beliefs or opinions, including on the meaning of life. The meaning of life is a complex philosophical and existential question that has been debated by thinkers,'" width="437">
+![](https://eric-blue.com/chatgpt3twillio/message_preview.png)
 
 
 
@@ -32,7 +32,7 @@ An OpenAI API Key is required - this can be obtained at [OpenAI Account Keys](ht
 
 
 
-![](/Users/ericblue/Library/Application%20Support/marktext/images/2023-04-09-18-20-51-image.png)
+![](https://eric-blue.com/chatgpt3twillio/twillio_setup.jpg)
 
 ### Configuration - Environment Variables
 
@@ -67,7 +67,15 @@ To start the app, run:
 ./gradlew run
 ```
 
-![](/Users/ericblue/Library/Application%20Support/marktext/images/2023-04-09-18-26-01-image.png)
+![](https://eric-blue.com/chatgpt3twillio/gradle_run.jpg)
+
+## Swagger
+
+Swagger endpoints are available locally at http://localhost:8080/swagger-ui
+
+
+
+![](https://eric-blue.com/chatgpt3twillio/swagger.jpg)
 
 ## Docker
 
